@@ -13,4 +13,4 @@ to future as of 4/24/20.
 These times will slowly even out as time passes.
 
 Program is written fully in C, through Harvard's CS50 IDE. 
-Created for 2020-2021 AP Comp Sci Principles Create Task 
+Created for 2019-2020 AP Comp Sci Principles Create Task 
