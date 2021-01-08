@@ -11,3 +11,6 @@ current date to past and 17 YEAR(S) 255 DAY(S) 23 HOUR(S) 59 MINUTE(S), 59 SECON
 to future as of 4/24/20.
 
 These times will slowly even out as time passes.
+
+Program is written fully in C, through Harvard's CS50 IDE. 
+Created for 2020-2021 AP Comp Sci Principles Create Task 
