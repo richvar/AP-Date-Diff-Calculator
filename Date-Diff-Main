@@ -1,0 +1,111 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <cs50.h>
+#include <time.h>
+#include <stdint.h>
+#include <unistd.h>
+
+//This is a date difference calculator/countdown timer
+//This program operates in Coordinated Universal Time (UTC), so difference dates are not tuned to
+//local time zones of user
+//Due to the limitations of C, only a 32 bit integer can be stored for time difference in seconds
+//so calculator is only accurate up to 68 YEAR(S) 35 DAY(S) 3 HOUR(S) 14 MINUTE(S), 8 SECOND(S) from/
+/current date to past//and 17 YEAR(S) 255 DAY(S) 23 HOUR(S) 59 MINUTE(S), 59 SECOND(S) from current date
+//to future as of 4/24/20
+//Times will slowly even out as time passes
+
+//global variable used to designate turning from a struct tm (string)
+//into an int that is used for later math with difftime() in difference() function   
+int tartimemath;
+
+//Declaring ints to be used in convertdiff & printtime
+//only diff needs to be a double as it deals with raw amount of seconds of
+//target date from Epoch (Jan. 1, 1970)
+//which then converted into much nicer numbers for various time intervals which can use ints    
+
+double diff;
+//double can only store up to so many seconds so program
+//does have limits on target dates    
+
+int seconds;    
+int minutes;    
+int hours;    
+int days;    
+int years;
+
+//create arrays to store date inputs as strings from fgets    
+
+char inputmonth[4];   
+char inputday[4];   
+char inputyear[5];  
+char inputhour[4];  
+char inputmin[4];    
+char inputsec[4];
+
+//Functions need declaration before use
+//but can be defined after
+
+voidsystime();
+voidtargettime();
+voiddifference();
+voidprinttime();
+voidfindtime();
+voidinitvars();
+
+int main(int argc, char *argv[])
+{
+//ask user to put in dates with manner program can work with
+printf("\nUsing MM/DD/YYYY and HH:MM:SS\n\nInsert target date: ");
+
+//asks and records input from user into aforementioned arrays,
+//then gets rid of null buffer in that string
+  printf("\n\nMonth (01-12): ");
+  fgets(inputmonth,4, stdin);    
+  inputmonth[strlen(inputmonth)-1]='\0';
+  //range from 1 to 12
+  
+  printf("Day (01-31): ");
+  fgets(inputday,4, stdin);    
+  inputday[strlen(inputday)-1]='\0';
+  //range from 1 to 31, depending on month
+  
+  printf("Year: ");
+  fgets(inputyear,6, stdin);    
+  inputyear[strlen(inputyear)-1]='\0';
+  //range can be anything within diff's bounds
+  
+  printf("Hour (00-23): ");
+  fgets(inputhour,6, stdin);    
+  inputhour[strlen(inputhour)-1]='\0';
+  //range from 0 to 23
+  
+  printf("Min (00-59): ");
+  fgets(inputmin,6, stdin);    
+  inputmin[strlen(inputmin)-1]='\0';
+  //range from 0 to 59
+  
+  printf("Sec (00-59): ");
+  fgets(inputsec,5, stdin);    
+  inputsec[strlen(inputsec)-1]='\0';
+  //range from 0 to 59
+  
+  targettime();
+  //converts user input of target date into ints that asctime() function can understand,
+  //then prints target date
+  //Must be run outside of a larger function otherwise cannot get day of week on its own
+  
+  initvars();
+  //initializes variables so findtime knows when to stop and start running (when diff != 0)
+  
+  findtime();
+  //calculates difference with updated time, prints, then waits 1 second,
+  //only when there is a difference between current and target time
+}
+
+//creates datatype of time_t so time system values can be stored
+//then finds and prints the current date as a string
+voidsystime(void)
+{    
+  time_t sysresult;
