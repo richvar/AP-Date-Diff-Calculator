@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <cs50.h>
 #include <time.h>
 #include <stdint.h>
 #include <unistd.h>
@@ -45,12 +44,12 @@
 
 //Functions need declaration before use
 //but can be defined after
-  voidsystime();
-  voidtargettime();
-  voiddifference();
-  voidprinttime();
-  voidfindtime();
-  voidinitvars();
+  void systime();
+  void targettime();
+  void difference();
+  void printtime();
+  void findtime();
+  void initvars();
 
 int main(int argc, char *argv[])
 {
