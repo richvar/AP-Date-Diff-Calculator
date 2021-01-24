@@ -26,7 +26,6 @@
 //only diff needs to be a double as it deals with raw amount of seconds of
 //target date from Epoch (Jan. 1, 1970)
 //which then converted into much nicer numbers for various time intervals which can use ints    
-
   double diff;  //double can only store up to so many seconds so program
                 //does have limits on target dates    
   int seconds;    
