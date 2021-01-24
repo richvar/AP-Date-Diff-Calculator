@@ -111,7 +111,6 @@ void systime(void)
 
 //creates struct of tm for use of time vars shown here: http://www.cplusplus.com/reference/ctime/tm/ 
 //then converts user input for target date to integers
-
 void targettime(void)
 {    
   struct tm t;    
