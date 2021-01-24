@@ -6,6 +6,7 @@
 #include <stdint.h>
 #include <unistd.h>
 
+
 //This is a date difference calculator/countdown timer
 //This program operates in Coordinated Universal Time (UTC), so difference dates are not tuned to
 //local time zones of user
@@ -15,6 +16,7 @@
 //current date to past and 17 YEAR(S) 255 DAY(S) 23 HOUR(S) 59 MINUTE(S), 59 SECOND(S) from current date
 //to future as of 4/24/20
 //Times will slowly even out as time passes
+
 
 //global variable used to designate turning from a struct tm (string)
 //into an int that is used for later math with difftime() in difference() function   
@@ -27,7 +29,6 @@
 
   double diff;  //double can only store up to so many seconds so program
                 //does have limits on target dates    
-
   int seconds;    
   int minutes;    
   int hours;    
@@ -105,7 +106,7 @@ void systime(void)
   time_t sysresult;
   
   printf("Current date:  ");
-  sysresult = time(NULL); //time(NULL) is command that grabs number of seconds since Epoch (Jan. 1, 1970)
+  sysresult = time(NULL); //time(NULL) is command that grabs number of seconds since Epoch (Jan. 1, 1970 00:00:00 UTC)
   printf("%s", asctime(localtime(&sysresult)));
 }
 
