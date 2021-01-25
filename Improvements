@@ -1,0 +1,11 @@
+1. Make program work with all time zones
+Could be done by asking user for time zone 
+1. PST 
+2. MST
+3. CST 
+4. EST 
+
+or something to that extent. Just subtract or add to diff based on user input 
+
+Would have to experiment how Daylight Savings Time would work, may be something for it in time struct
+
